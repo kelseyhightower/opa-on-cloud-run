@@ -1,7 +1,9 @@
 #!/bin/bash
 
+CURRENT_USER_EMAIL=$(gcloud config list account --format "value(core.account)")
+
 gcloud run services add-iam-policy-binding open-policy-agent \
-  --member='user:kelsey.hightower@gmail.com' \
+  --member="user:${CURRENT_USER_EMAIL}" \
   --role='roles/run.invoker' \
   --platform managed \
   --region us-west1

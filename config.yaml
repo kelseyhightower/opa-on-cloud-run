@@ -6,6 +6,17 @@ services:
       gcp_metadata:
         scopes:
           - "https://www.googleapis.com/auth/devstorage.read_only"
+  cloudrun:
+    url: ${BQ_CONNECTOR_URL}
+    credentials:
+      gcp_metadata:
+        audience: ${BQ_CONNECTOR_URL}
+
+decision_logs:
+  service: cloudrun
+  reporting:
+    min_delay_seconds: 5
+    max_delay_seconds: 10
 
 bundles:
   authz:

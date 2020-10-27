@@ -1,9 +1,0 @@
-services:
-  - name: localhost
-    url: http://127.0.0.1:8888
-
-decision_logs:
-  service: localhost
-  reporting:
-    min_delay_seconds: 5
-    max_delay_seconds: 10

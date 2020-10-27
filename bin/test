@@ -19,3 +19,8 @@ curl -i "${URL/health}" \
 echo "Get bundle health ..."
 curl -i "${URL}/health?bundles" \
   -H "Authorization: Bearer ${ID_TOKEN}"
+
+echo "Test policy and decision logs ..."
+curl -i "${URL}/v1/data/http/example/authz" \
+  -H "Authorization: Bearer ${ID_TOKEN}" \
+  -d @input.json
