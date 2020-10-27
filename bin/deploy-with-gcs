@@ -1,0 +1,20 @@
+#!/bin/bash
+
+
+BUCKET_NAME="openpolicyagent"
+PROJECT_ID=$(gcloud config get-value project)
+
+gcloud beta run deploy open-policy-agent \
+  --args='--server,--log-format,text,--addr,0.0.0.0:8181,-c,/config.yaml' \
+  --concurrency 80 \
+  --cpu 2 \
+  --image gcr.io/${PROJECT_ID}/opa:0.24.0-dev-gcs \
+  --memory '2G' \
+  --min-instances 1 \
+  --no-allow-unauthenticated \
+  --platform managed \
+  --port 8181 \
+  --region us-west1 \
+  --service-account "open-policy-agent@${PROJECT_ID}.iam.gserviceaccount.com" \
+  --set-env-vars="BUCKET_NAME=${BUCKET_NAME}" \
+  --timeout 300

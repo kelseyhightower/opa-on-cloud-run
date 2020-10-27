@@ -1,0 +1,21 @@
+#!/bin/bash
+
+ID_TOKEN=$(gcloud auth print-identity-token)
+
+URL=$(gcloud run services describe open-policy-agent \
+  --platform managed \
+  --region us-west1 \
+  --format json | \
+  jq -r '.status.url')
+
+echo "List policies ..."
+curl "${URL}/v1/policies" \
+  -H "Authorization: Bearer ${ID_TOKEN}"
+
+echo "Get Health ..."
+curl -i "${URL/health}" \
+  -H "Authorization: Bearer ${ID_TOKEN}"
+
+echo "Get bundle health ..."
+curl -i "${URL}/health?bundles" \
+  -H "Authorization: Bearer ${ID_TOKEN}"

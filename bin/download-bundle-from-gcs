@@ -1,0 +1,6 @@
+#!/bin/bash
+
+curl -v -i -X GET \
+  -H "Authorization: Bearer $(gcloud auth print-identity-token)" \
+  -o bundle.tar.gz \
+  "https://storage.googleapis.com/storage/v1/b/openpolicyagent/o/bundles%2Fbundle.tar.gz?alt=media"

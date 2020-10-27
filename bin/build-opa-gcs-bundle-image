@@ -1,0 +1,5 @@
+#!/bin/bash
+
+PROJECT_ID=$(gcloud config get-value project)
+
+gcloud builds submit -t gcr.io/${PROJECT_ID}/opa:0.24.0-dev-gcs .

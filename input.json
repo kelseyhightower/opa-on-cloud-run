@@ -1,0 +1,6 @@
+{
+  "input": {
+    "path": "/health",
+    "method": "POST"
+  }
+}

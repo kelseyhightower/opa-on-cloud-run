@@ -1,0 +1,3 @@
+#!/bin/bash
+
+opa build -t rego -r 1 policies/

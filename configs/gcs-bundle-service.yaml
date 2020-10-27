@@ -1,0 +1,17 @@
+services:
+  gcs:
+    url: https://storage.googleapis.com/storage/v1/b/${BUCKET_NAME}/o
+    response_header_timeout_seconds: 5
+    credentials:
+      gcp_metadata:
+        scopes:
+          - "https://www.googleapis.com/auth/devstorage.read_only"
+
+bundles:
+  authz:
+    service: gcs
+    resource: 'bundle.tar.gz?alt=media'
+    persist: true
+    polling:
+      min_delay_seconds: 60
+      max_delay_seconds: 120

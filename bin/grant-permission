@@ -1,0 +1,7 @@
+#!/bin/bash
+
+gcloud run services add-iam-policy-binding open-policy-agent \
+  --member='user:kelsey.hightower@gmail.com' \
+  --role='roles/run.invoker' \
+  --platform managed \
+  --region us-west1
